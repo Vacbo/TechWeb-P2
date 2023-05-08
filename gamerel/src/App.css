@@ -40,3 +40,12 @@
 .App-link {
   color: #61dafb;
 }
+
+.App-text-input-container{
+  margin-left: 27.5%;
+  margin-right: 27.5%;
+}
+
+.App-text-input{
+  background-color: #55585f;
+}

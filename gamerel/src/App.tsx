@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import { useState } from 'react';
 import logo from './controller.svg';
 import axios from "axios";
 import './App.css';
@@ -6,14 +6,25 @@ import { TextField } from '@mui/material';
 
 function App() {
   const [game, setGame] = useState('');
-  
+
+  const url = "http://localhost:8000/api/game/";
+
+  const options = {
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    },
+  };
+
   const handleKeyDown = (event: any) => {
     if (event.key === 'Enter') {
       // axios post
+      axios
+        .post(url, { gameName: game }, options)
+
       console.log(game);
     }
   };
-
 
   return (
     <div className="App">
@@ -24,7 +35,9 @@ function App() {
           <p className="App-logo-slogan"> A game relevance search manger</p>
         </div>
       </header>
-      <TextField id="game" variant="outlined" placeholder="Search or enter game" onChange={event => setGame(event.target.value)} onKeyDown={handleKeyDown}/>
+      <div className='App-text-input-container'>
+        <TextField fullWidth id="game" variant="outlined" placeholder="Search or enter game" onChange={event => setGame(event.target.value)} onKeyDown={handleKeyDown} className='App-text-input' sx={{ input: { color: 'white' } }} />
+      </div>
     </div>
   );
 }
