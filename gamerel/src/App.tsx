@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from './logo.svg';
+import logo from './controller.svg';
 import './App.css';
 
 function App() {
@@ -7,17 +7,10 @@ function App() {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <div className="App-logo-container">
+          <h1 className="App-logo-name">GAMEREL</h1>
+          <p className="App-logo-slogan"> A game relevance search manger</p>
+        </div>
       </header>
     </div>
   );
