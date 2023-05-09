@@ -42,10 +42,24 @@
 }
 
 .App-text-input-container{
-  margin-left: 27.5%;
+  margin-left: 30%;
   margin-right: 27.5%;
 }
 
 .App-text-input{
   background-color: #55585f;
+}
+
+.App-result-container{
+  margin-top: 2.5%;
+}
+
+.App-result-text-title{
+  font-size: 2rem;
+  font-weight: bold;
+  margin: 0%;
+}
+
+.App-result-text1{
+  margin-left: 1.25%;
 }

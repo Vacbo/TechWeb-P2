@@ -6,6 +6,9 @@ import { TextField } from '@mui/material';
 
 function App() {
   const [game, setGame] = useState('');
+  const [showResult, setShowResult] = useState(false);
+  const [playtime, setPlaytime] = useState('');
+  const [twitchCount, setTwitchCount] = useState('');
 
   const url = "http://localhost:8000/api/game/";
 
@@ -21,6 +24,10 @@ function App() {
       // axios post
       axios
         .post(url, { gameName: game }, options)
+        .then(response => {
+          console.log(response);
+          setShowResult(true);
+        })
 
       console.log(game);
     }
@@ -38,6 +45,12 @@ function App() {
       <div className='App-text-input-container'>
         <TextField fullWidth id="game" variant="outlined" placeholder="Search or enter game" onChange={event => setGame(event.target.value)} onKeyDown={handleKeyDown} className='App-text-input' sx={{ input: { color: 'white' } }} />
       </div>
+      {showResult && 
+        <div className='App-result-container'>
+          <p className='App-result-text-title'>GAME: {game}</p>
+          <p className='App-result-text1'>Average Playtime: {playtime}</p>
+          <p>Twitch Count: {twitchCount}</p>
+        </div>}
     </div>
   );
 }
