@@ -10,8 +10,6 @@ function App() {
   const [playtime, setPlaytime] = useState('');
   const [twitchCount, setTwitchCount] = useState('');
 
-  const url = "http://localhost:8000/api/game/";
-
   const options = {
     headers: {
       'Content-Type': 'application/json',
@@ -20,16 +18,14 @@ function App() {
   };
 
   const handleKeyDown = (event: any) => {
-    if (event.key === 'Enter') {
-      // axios post
+    if (event.key === 'Enter') {  
+      // axios get
       axios
-        .post(url, { gameName: game }, options)
+        .get("https://api.rawg.io/api/games/" + game.replace(/\s+/g, '-').toLowerCase() + "?key=415ef499ce2947b995e3e6a256a70f5c", options)
         .then(response => {
-          console.log(response);
-          setShowResult(true);
+          axios
+            .post("http://localhost:8000/api/game/",{data: response.data}, options)
         })
-
-      console.log(game);
     }
   };
 
