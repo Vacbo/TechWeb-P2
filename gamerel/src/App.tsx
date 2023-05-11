@@ -26,7 +26,9 @@ function App() {
           axios
             .post("http://127.0.0.1:8000/games/update", response.data, options)
             .then(response => {
-              console.log(response.data);
+              setPlaytime(response.data.playtime);
+              setTwitchCount(response.data.twitch_count);
+              setShowResult(true);
             })
         })
     }
@@ -47,8 +49,8 @@ function App() {
       {showResult &&
         <div className='App-result-container'>
           <p className='App-result-text-title'>GAME: {game}</p>
-          <p className='App-result-text1'>Average Playtime: {playtime}</p>
-          <p>Twitch Count: {twitchCount}</p>
+          <p className='App-result-text1'>Average Playtime: {playtime} hours</p>
+          <p>Twitch Count: {twitchCount} views</p>
         </div>}
     </div>
   );
