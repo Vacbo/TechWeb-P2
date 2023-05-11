@@ -8,7 +8,7 @@ function App() {
   const [game, setGame] = useState('');
   const [showResult, setShowResult] = useState(false);
   const [playtime, setPlaytime] = useState('');
-  const [twitchCount, setTwitchCount] = useState('');
+  const [twitchStreamsCount, settwitchStreamsCount] = useState('');
 
   const options = {
     headers: {
@@ -27,8 +27,12 @@ function App() {
             .post("http://127.0.0.1:8000/games/update", response.data, options)
             .then(response => {
               setPlaytime(response.data.playtime);
-              setTwitchCount(response.data.twitch_count);
-              setShowResult(true);
+              axios
+                .post("http://127.0.0.1:8000/games/data", {slug: game.replace(/\s+/g, '-').toLowerCase()}, options)
+                .then(response => {
+                  settwitchStreamsCount(response.data);
+                  setShowResult(true);
+                })
             })
         })
     }
@@ -49,8 +53,8 @@ function App() {
       {showResult &&
         <div className='App-result-container'>
           <p className='App-result-text-title'>GAME: {game}</p>
-          <p className='App-result-text1'>Average Playtime: {playtime} hours</p>
-          <p>Twitch Count: {twitchCount} views</p>
+          <p className='App-result-text1'>Average Playtime of the game: {playtime} hours</p>
+          <p> Number of Twitch Streams of the game: {twitchStreamsCount} </p>
         </div>}
     </div>
   );
