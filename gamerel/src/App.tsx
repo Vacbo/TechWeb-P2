@@ -24,11 +24,11 @@ function App() {
         .get("https://api.rawg.io/api/games/" + game.replace(/\s+/g, '-').toLowerCase() + "?key=415ef499ce2947b995e3e6a256a70f5c", options)
         .then(response => {
           axios
-            .post("http://127.0.0.1:8000/games/update", response.data, options)
+            .post("https://techweb-p2-production.up.railway.app/games/update", response.data, options)
             .then(response => {
               setPlaytime(response.data.playtime);
               axios
-                .post("http://127.0.0.1:8000/games/data", {slug: game.replace(/\s+/g, '-').toLowerCase()}, options)
+                .post("https://techweb-p2-production.up.railway.app/games/data", {slug: game.replace(/\s+/g, '-').toLowerCase()}, options)
                 .then(response => {
                   settwitchStreamsCount(response.data);
                   setShowResult(true);
