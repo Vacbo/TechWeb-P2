@@ -18,13 +18,16 @@ function App() {
   };
 
   const handleKeyDown = (event: any) => {
-    if (event.key === 'Enter') {  
+    if (event.key === 'Enter') {
       // axios get
       axios
         .get("https://api.rawg.io/api/games/" + game.replace(/\s+/g, '-').toLowerCase() + "?key=415ef499ce2947b995e3e6a256a70f5c", options)
         .then(response => {
           axios
-            .post("http://localhost:8000/api/game/",{data: response.data}, options)
+            .post("http://127.0.0.1:8000/games/update", response.data, options)
+            .then(response => {
+              console.log(response.data);
+            })
         })
     }
   };
@@ -41,7 +44,7 @@ function App() {
       <div className='App-text-input-container'>
         <TextField fullWidth id="game" variant="outlined" placeholder="Search or enter game" onChange={event => setGame(event.target.value)} onKeyDown={handleKeyDown} className='App-text-input' sx={{ input: { color: 'white' } }} />
       </div>
-      {showResult && 
+      {showResult &&
         <div className='App-result-container'>
           <p className='App-result-text-title'>GAME: {game}</p>
           <p className='App-result-text1'>Average Playtime: {playtime}</p>
