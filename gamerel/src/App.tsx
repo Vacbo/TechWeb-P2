@@ -44,7 +44,7 @@ function App() {
         <img src={logo} className="App-logo" alt="logo" />
         <div className="App-logo-container">
           <h1 className="App-logo-name">GAMEREL</h1>
-          <p className="App-logo-slogan"> A game relevance search manger</p>
+          <p className="App-logo-slogan"> A game relevance search manager</p>
         </div>
       </header>
       <div className='App-text-input-container'>
@@ -53,8 +53,8 @@ function App() {
       {showResult &&
         <div className='App-result-container'>
           <p className='App-result-text-title'>GAME: {game}</p>
-          <p className='App-result-text1'>Average Playtime of the game: {playtime} hours</p>
-          <p> Number of Twitch Streams of the game: {twitchStreamsCount} </p>
+          <p className='App-result-text1'>Average playtime of the game in hours: {playtime} hours</p>
+          <p> How many streamers are streaming the game: {twitchStreamsCount} </p>
         </div>}
     </div>
   );
