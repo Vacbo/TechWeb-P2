@@ -37,12 +37,12 @@ def data(request: HttpRequest) -> HttpResponse:
     if len(games) > 0:
     
         if games[0].twitch_count > games[1].twitch_count:
-            streamsCount = "Há mais streams que a última vez que verificamos"
+            streamsCount = "There are more streams than the last time we checked"
         elif games[0].twitch_count < games[1].twitch_count:
-            streamsCount = "Há menos streams que a última vez que verificamos"
+            streamsCount = "There are less streams than the last time we checked"
         else:
-            streamsCount = "Há o mesmo número de streams que a última vez que verificamos"
+            streamsCount = "There is the same number of streams as the last time we checked"
         
         return Response(streamsCount)
     else:
-        return Response("Ainda não temos o jogo que você procurou em nosso banco de dados")
+        return Response("We don't have the game you searched in our database yet")
