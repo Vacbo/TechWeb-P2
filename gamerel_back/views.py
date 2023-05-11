@@ -27,3 +27,11 @@ def update(request: HttpRequest) -> HttpResponse:
     game.save()
 
     return Response(GameSerializer(game).data)
+
+@api_view(['POST'])
+def data(request: HttpRequest) -> HttpResponse:
+    data = loads(request.body.decode('utf-8'))
+
+    games = Game.objects.get(name=data['name'])
+
+    return Response(GameSerializer(games, many=True).data)
