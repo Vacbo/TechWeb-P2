@@ -34,14 +34,16 @@ def data(request: HttpRequest) -> HttpResponse:
 
     games = Game.objects.all().filter(slug__contains=data['slug']).order_by('-update_time')
 
-    if len(games) > 0:
-    
-        if games[0].twitch_count > games[1].twitch_count:
-            streamsCount = "There are more streams than the last time we checked"
-        elif games[0].twitch_count < games[1].twitch_count:
-            streamsCount = "There are less streams than the last time we checked"
+    if len(games) >= 1:
+        if games[0].twitch_count is not None and games[1].twitch_count is not None:
+            if games[0].twitch_count > games[1].twitch_count:
+                streamsCount = "There are more streams than the last time we checked"
+            elif games[0].twitch_count < games[1].twitch_count:
+                streamsCount = "There are less streams than the last time we checked"
+            else:
+                streamsCount = "There is the same number of streams as the last time we checked"
         else:
-            streamsCount = "There is the same number of streams as the last time we checked"
+            streamsCount = "We don't have enough data to compare the number of streams"
         
         return Response(streamsCount)
     else:
